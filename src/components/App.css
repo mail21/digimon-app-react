@@ -1,0 +1,18 @@
+body{
+  background-image: url("./../assets/digimonPattern.jpg");
+}
+
+main{
+  border: 1px solid white;
+  background-color: white;
+}
+
+.digi-item{
+  display: flex;
+  justify-content: space-around;
+}
+
+.digi-item > .digi-card{
+  margin-bottom: 1em;
+  width: 12rem
+}
