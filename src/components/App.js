@@ -10,7 +10,7 @@ class App extends Component{
     this.state = {
       digimon : [],
       searchField : "",
-      form: ""
+      selectField : ""
     }
   }
 
@@ -23,26 +23,27 @@ class App extends Component{
   }
 
   searchChange = (event)=>{
-    this.setState({form:"search"});
     this.setState({searchField:event.target.value});
 
   }
 
   pickChange = (event) =>{
-    this.setState({form:"pick"});
-    this.setState({searchField:event.target.value});
+    if(event.target.value == "All"){
+      this.setState({selectField:""});
+    }else{
+      this.setState({selectField:event.target.value});
+    }
   }
 
   render(){
     console.log(this.state.searchField)
-    let {digimon, searchField, form} = this.state;
+    let {digimon, searchField, selectField} = this.state;
 
     let filteredDigimons = digimon.filter((el)=>{
-      if(form == "pick"){
-        return el.level.toLowerCase().includes(searchField.toLowerCase())
-      }else{
-        return el.name.toLowerCase().includes(searchField.toLowerCase())
-      }
+        return el.level.toLowerCase().includes(selectField.toLowerCase()) 
+                  && 
+                el.name.toLowerCase().includes(searchField.toLowerCase());
+      
     })
     
     return(
@@ -51,7 +52,7 @@ class App extends Component{
             <h1>Digimon App</h1>
           </div>
 
-          <div className="row mt-4 ml-2 mr-2">
+          <div className="row mt-4 ml-2 mr-2" style={{margin:"auto"}}>
               <ContainerInput search={this.searchChange}/>
               <ContainerLevels pick={this.pickChange} />
           </div>

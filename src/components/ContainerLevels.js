@@ -2,8 +2,9 @@ import React from 'react';
 
 const ContainerLevels = ({pick})=>{
     return (
-        <div>
-           <select className="form-control level-pick container-level none" onChange={pick}>
+        <div style={{width:"45%"}} className="ml-3">
+           <select className="form-control" onChange={pick} >
+             <option>All</option>
              <option>In Training</option>
              <option>Fresh</option>
              <option>Rookie</option>
